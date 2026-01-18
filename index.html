@@ -10,7 +10,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇫🇷</text></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇫🇷</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +94,13 @@
                             <path d="M2 12l10 5 10-5" />
                         </svg>
                         <span>Vocabulary</span>
+                    </button>
+                    <button class="nav-btn" data-section="verbs">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Verb Hub</span>
                     </button>
                     <button class="nav-btn" data-section="myvocab">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -427,6 +435,68 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Verbs Section -->
+                <section id="verbs-section" class="section">
+                    <header class="section-header-row">
+                        <div>
+                            <h2>🔥 Verb Hub</h2>
+                            <p class="section-desc">Master French conjugation and usage</p>
+                        </div>
+                        <div class="header-actions">
+                            <span id="verbs-count" class="badge badge-lg">Loading...</span>
+                        </div>
+                    </header>
+
+                    <!-- Filter Bar -->
+                    <div class="library-filters">
+                        <div class="search-box">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="verb-search" placeholder="Search verbs (e.g. être, to be)...">
+                        </div>
+                        <select id="verb-filter-group">
+                            <option value="all">All Groups</option>
+                            <option value="1">Group 1 (ER)</option>
+                            <option value="2">Group 2 (IR)</option>
+                            <option value="3">Group 3 (Irregular)</option>
+                        </select>
+                        <select id="verb-filter-aux">
+                            <option value="all">All Auxiliaries</option>
+                            <option value="avoir">Avoir</option>
+                            <option value="etre">Être</option>
+                        </select>
+                    </div>
+
+                    <div id="verbs-view-container">
+                        <!-- Library List View -->
+                        <div id="verbs-library-view">
+                            <div id="verbs-grid" class="verbs-grid">
+                                <!-- Cards populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Dossier Detail View -->
+                        <div id="verbs-dossier-view" class="hidden">
+                            <div class="editor-toolbar">
+                                <button id="btn-back-verbs" class="btn btn-text">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                                    </svg>
+                                    Back to Verbs
+                                </button>
+                            </div>
+
+                            <div id="verb-dossier-content" class="fade-in">
+                                <!-- Detailed content populated by JS -->
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -888,6 +958,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="verbs.js"></script>
     <script src="app.js"></script>
     <script>
         // PWA Service Worker Registration

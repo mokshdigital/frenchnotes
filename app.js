@@ -40,6 +40,7 @@ const MAX_IMAGES = 5;
 document.addEventListener('DOMContentLoaded', () => {
     initSupabase();
     initPasswordProtection();
+    // Verbs module will be init by initializeAppContent after auth
 });
 
 function initSupabase() {
@@ -96,6 +97,7 @@ function initializeAppContent() {
     initQuizzes();
     initChat();
     initResources();
+    if (typeof initVerbsUI === 'function') initVerbsUI(); // Initialize Verbs Hub
     loadAllData();
 }
 
@@ -134,6 +136,11 @@ function initNavigation() {
             if (window.innerWidth <= 900) {
                 sidebar.classList.remove('open');
                 overlay.classList.add('hidden');
+            }
+
+            // Lazy load verbs data
+            if (section === 'verbs' && typeof loadVerbsData === 'function' && (!verbsList || verbsList.length === 0)) {
+                loadVerbsData();
             }
         });
     });
@@ -189,6 +196,10 @@ function switchSection(sectionId) {
     // Reset Grammar views
     document.getElementById('grammar-library-view')?.classList.remove('hidden');
     document.getElementById('grammar-editor-view')?.classList.add('hidden');
+
+    // Reset Verbs views
+    document.getElementById('verbs-library-view')?.classList.remove('hidden');
+    document.getElementById('verbs-dossier-view')?.classList.add('hidden');
 }
 
 // =============================================

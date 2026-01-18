@@ -10,6 +10,7 @@
 -   Created `CONTEXT.md` to define project scope and architecture.
 -   Created `PHASE_LOG.md` to track project phases.
 -   Created `SESSION_LOG.md` to track agent interactions.
+-   Connected project to GitHub repository: `https://github.com/mokshdigital/frenchnotes`
 
 ### Current State
 -   App is functional.
